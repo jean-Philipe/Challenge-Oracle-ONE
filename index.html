@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encriptador de texto</title>
+    <style>
+        #boton-encriptar {
+            border: none;
+            border-radius: 30px;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            background-color: rgb(43, 129, 241);
+            width: 300px;
+            height: 80px;
+
+        }
+
+        #boton-desencriptar {
+            border: 2px solid rgb(118, 172, 244);
+            border-radius: 30px;
+            color:  rgb(118, 172, 244);
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            background-color: white;
+            width: 300px;
+            height: 80px;
+        }
+        #barra-msj {
+            font-size: 20px;
+            width: 200%;
+            height: 700px;
+            word-wrap: break-word;
+            border: 2px solid rgb(118, 172, 244);
+            background-color:rgb(238, 242, 247);
+            
+        }
+        #mensaje {
+            text-align: center;
+            float: left;
+            font-size: 20px;
+            background-color: white;
+            border-radius: 10px;
+            border-color: rgb(118, 172, 244);
+            margin-left: 650px;
+            width: 400px;
+            height: 700px;
+        }
+        
+    </style>
+</head>
+<body style="background-color:rgb(231, 239, 249);">
+    <img src="images/Logo.png" alt="Logo" style="float: left;">
+    <h1>Bienvenido al Encriptador y desencriptador de codigo!!</h1>
+    <div style="float: left;">
+        <textarea id="barra-msj" type="text" placeholder="Ingrese el mensaje a encriptar"></textarea>
+        <div id="botones">
+            <button id="boton-encriptar" onclick="encriptarDesencriptar(0)">Encriptar</button>
+            <button id="boton-desencriptar" onclick="encriptarDesencriptar(1)">Desencriptar</button>
+        </div>
+    </div>
+    <div id="mensaje">
+        <p id="texto1" style="display: block;">
+            <p id="texto-base" style="display: block;"></p>
+        </p>
+        <img id="imagen" src="images/nofind.png" style="display: block;"> 
+    
+</body>
+<script>
+    const input = document.getElementById('barra-msj');
+    input.focus();
+    var textobase = document.getElementById("texto-base");
+    textobase.innerHTML= '<h2>Ningun mensaje fue encontrado</h2> <br> Ingresa el texto que desees encriptar o desencriptar'
+        
+    function encriptar(mensaje){
+        var mensaje2 = ''
+        for (let i = 0; i < mensaje.length; i++) {
+            if (mensaje[i] == "e") {
+                mensaje2 += "enter";
+            } else if (mensaje[i] == "i") {
+                mensaje2 += "imes";
+            } else if (mensaje[i] == "a") {
+                mensaje2 += "ai";
+            } else if (mensaje[i] == "o") {
+                mensaje2 += "ober";
+            } else if (mensaje[i] == "u") {
+                mensaje2 += "ufat";
+            } else {
+                mensaje2 += mensaje[i];
+            }
+        }
+        return mensaje2;
+    }
+    function desencriptar(mensajeEncriptado){
+        var mensaje = '';
+        var i = 0;
+        while (i < mensajeEncriptado.length) {
+            if (mensajeEncriptado[i] == "e" && mensajeEncriptado[i + 1] == "n" && mensajeEncriptado[i + 2] == "t" && mensajeEncriptado[i + 3] == "e" && mensajeEncriptado[i + 4] == "r") {
+                mensaje += "e";
+                i += 5;
+            } else if (mensajeEncriptado[i] == "i" && mensajeEncriptado[i + 1] == "m" && mensajeEncriptado[i + 2] == "e" && mensajeEncriptado[i + 3] == "s") {
+                mensaje += "i";
+                i += 4;
+            } else if (mensajeEncriptado[i] == "a" && mensajeEncriptado[i + 1] == "i") {
+                mensaje += "a";
+                i += 2;
+            } else if (mensajeEncriptado[i] == "o" && mensajeEncriptado[i + 1] == "b" && mensajeEncriptado[i + 2] == "e" && mensajeEncriptado[i + 3] == "r") {
+                mensaje += "o";
+                i += 4;
+            } else if (mensajeEncriptado[i] == "u" && mensajeEncriptado[i + 1] == "f" && mensajeEncriptado[i + 2] == "a" && mensajeEncriptado[i + 3] == "t") {
+                mensaje += "u";
+                i += 4;
+            } else {
+                mensaje += mensajeEncriptado[i];
+                i++;
+            }
+        }
+        return mensaje;
+    }
+    function encriptarDesencriptar(numero){
+        var mensaje = document.querySelector("textarea").value;
+        var mensaje_final = '';
+        if (parseInt(numero) == 0) {
+            mensaje_final = encriptar(mensaje);
+        }
+        else if (parseInt(numero) == 1) {
+            mensaje_final = desencriptar(mensaje);
+        }
+        else {
+            mensaje_final = "";
+        }
+        var mensaje_div = document.getElementById("mensaje");
+        var textobase = document.getElementById("texto-base");
+        textobase.style.display = "none";
+
+        if (mensaje_final == '') {
+            var imagen = document.getElementById("imagen");
+            imagen.style.display = "block";
+            mensaje_div.appendChild(imagen);
+            var mensaje = document.getElementById("texto1");
+            mensaje.style.display = "block";
+            mensaje.innerHTML = "<h2>Ningun mensaje fue encontrado</h2> <br> Ingresa el texto que desees encriptar o desencriptar";
+        }
+        else {
+            var mensaje = document.getElementById("texto1");
+            mensaje.style.display = "block";
+            mensaje.innerHTML =  mensaje_final;
+            var imagen = document.getElementById("imagen");
+            imagen.style.display = "none";
+            
+        }
+    }
+
+</script>
+</html>
