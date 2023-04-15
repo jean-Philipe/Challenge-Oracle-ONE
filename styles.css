@@ -37,6 +37,7 @@
     word-wrap: break-word;
     border: 2px solid rgb(118, 172, 244);
     background-color:rgb(238, 242, 247);
+    color:  rgb(0, 63, 146);
     
 }
 #mensaje {
@@ -49,4 +50,20 @@
     margin-left: 650px;
     width: 400px;
     height: 700px;
+}
+#boton-copiar{
+    border: 2px solid rgb(118, 172, 244);
+    border-radius: 30px;
+    color:  rgb(118, 172, 244);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color: white;
+    width: 300px;
+    height: 80px;
+    margin-left: 680px;
 }

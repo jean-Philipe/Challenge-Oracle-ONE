@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,23 +8,29 @@
     <title>Encriptador de texto</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body style="background-color:rgb(231, 239, 249);">
     <img src="images/Logo.png" alt="Logo" style="float: left;">
-    <h1>Bienvenido al Encriptador y desencriptador de codigo!!</h1>
+    <h1>Bienvenido/a al Encriptador y desencriptador de codigo!!</h1>
     <div style="float: left;">
-        <textarea id="barra-msj" type="text" placeholder="Ingrese el mensaje a encriptar"></textarea>
+        <textarea id="barra-msj" type="text" placeholder="Escriba su mensaje aquí"></textarea>
         <div id="botones">
             <button id="boton-encriptar" onclick="encriptarDesencriptar(0)">Encriptar</button>
             <button id="boton-desencriptar" onclick="encriptarDesencriptar(1)">Desencriptar</button>
         </div>
     </div>
-    <div id="mensaje">
-        <p id="texto1" style="display: block;">
-            <p id="texto-base" style="display: block;"></p>
-        </p>
-        <img id="imagen" src="images/nofind.png" style="display: block;"> 
+    <div>
+        <div id="mensaje">
+            <p id="texto1" style="display: block;">
+                <p id="texto-base" style="display: block;"></p>
+            </p>
+            <img id="imagen" src="images/nofind.png" style="display: block;"> 
+        </div>
+        <button id="boton-copiar" onclick="copiarTexto()"> Copiar</button>
+    </div>
     
 </body>
+
 <script>
     const input = document.getElementById('barra-msj');
     input.focus();
@@ -108,6 +115,15 @@
             
         }
     }
-
+    function copiarTexto() {
+      let texto = document.getElementById("mensaje").innerText;
+      let input = document.createElement("input");
+      document.body.appendChild(input);
+      input.value = texto;
+      input.select();
+      document.execCommand("copy");
+      document.body.removeChild(input);
+    }
 </script>
+
 </html>
